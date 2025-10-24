@@ -1,7 +1,7 @@
 // RegisterScreen.jsx
 
-import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet } from "react-native";
+import { useState } from "react";
+import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { register } from "../services/api";
 
 /**
@@ -21,7 +21,6 @@ export default function RegisterScreen({ navigation }) {
     const handleRegister = async () => {
         console.log("Iniciando o processo de registro...");
         try {
-            abc da amazonia
             await register(username, password);
             console.log("Usuário registrado com sucesso");
             Alert.alert("Sucesso", "Usuário registrado com sucesso!");

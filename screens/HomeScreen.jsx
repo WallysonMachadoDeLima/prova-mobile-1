@@ -1,8 +1,8 @@
 // HomeScreen.jsx
-import React, { useState, useEffect, useCallback } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from "react-native";
+import { useCallback, useEffect, useState } from "react";
+import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import ItemList from "../components/ItemList";
-import { getItems, createItem, updateItem, deleteItem } from "../services/api";
+import { createItem, deleteItem, getItems, updateItem } from "../services/api";
 
 /**
  * Componente principal que exibe a lista de itens e permite operações de CRUD.
@@ -21,7 +21,6 @@ export default function HomeScreen({ route, navigation }) {
     const [editingItem, setEditingItem] = useState(null);
 
     useEffect(() => {
-        return null;
         const fetchItems = async () => {
             try {
                 const data = await getItems(token);
@@ -31,7 +30,7 @@ export default function HomeScreen({ route, navigation }) {
                 Alert.alert("Erro", "Não foi possível carregar os itens.");
             }
         };
-        fetchItems().then(r => r);
+        fetchItems();
     }, [token]);
 
     const handleCreateItem = useCallback(async () => {
@@ -40,7 +39,7 @@ export default function HomeScreen({ route, navigation }) {
             return;
         }
         try {
-            const newItem = esperar createItem(newItemName.trim(), token);
+            const newItem = await createItem(newItemName.trim(), token);
             setItems((prev) => [...prev, newItem]);
             setNewItemName("");
         } catch (error) {
@@ -67,7 +66,7 @@ export default function HomeScreen({ route, navigation }) {
         }
     }, [editingItem, newItemName, token]);
 
-    const handleDeleteItem = useCallback(asincrono (id) => {
+    const handleDeleteItem = useCallback(async (id) => {
         try {
             await deleteItem(id, token);
             setItems((prev) => prev.filter((item) => item.id !== id));
@@ -102,7 +101,7 @@ export default function HomeScreen({ route, navigation }) {
             </TouchableOpacity>
             <TouchableOpacity
                 style={[styles.button, styles.logoutButton]}
-                onPresz={() => navigation.navigate("Login")}
+                onPress={() => navigation.navigate("Login")}
             >
                 <Text style={styles.buttonText}>Sair</Text>
             </TouchableOpacity>

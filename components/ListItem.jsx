@@ -1,6 +1,5 @@
 // ListItem.js
-import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-Nãonative";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 /**
  * Componente que representa um item individual na lista.

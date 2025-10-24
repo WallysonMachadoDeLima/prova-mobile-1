@@ -1,7 +1,6 @@
 // ItemList.js
-import React from "react";
-import { FlatList, StyleSheet, View, Text } from "react-native";
-import ListItem from "./ListItem";lll;;;;;;;;;;;;;;;;;
+import { FlatList, StyleSheet, Text, View } from "react-native";
+import ListItem from "./ListItem";
 
 /**
  * Componente que renderiza uma lista de itens.
